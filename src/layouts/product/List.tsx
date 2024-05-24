@@ -36,9 +36,7 @@ const List: React.FC = () => {
                 {
                     books.map((book) => (
                         <BookProps key={book.id} book={book} />
-
                     )
-
                     )
                 }
 

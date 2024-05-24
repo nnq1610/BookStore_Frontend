@@ -9,7 +9,7 @@ function Banner() {
                     <p>
                         quang đẹp trai
                     </p>
-                    {/* Nút màu xanh dương */}
+                    {/* Nút màu xanh dương , dời nút sang bên phải*/}
                     <button className="btn btn-primary btn-lg text-white float-end">Xem thêm tại shop của quang đẹp trai</button>
                 </div>
             </div>
