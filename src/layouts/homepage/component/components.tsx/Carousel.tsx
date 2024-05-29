@@ -14,7 +14,7 @@ function Carousel() {
                     <div className="carousel-item active" data-bs-interval="10000">
                         <div className = "row align-items-center">
                             <div className="col-5 text-center">
-                              <img src={"./../../../../images/books/1.png"}  style={{width:'150px'}}/>
+                              {/* <img src={"./../../../../images/books/1.png"}  style={{width:'150px'}}/> */}
                             </div>
                             <div className="col-7">
                                 <h5>Sách ôn thực chiến ielts</h5>
@@ -26,7 +26,7 @@ function Carousel() {
                     <div className="carousel-item active" data-bs-interval="10000">
                         <div className = "row align-items-center">
                             <div className="col-5 text-center">
-                              <img src={"./../../../../images/books/2.png"}  style={{width:'150px'}}/>
+                              {/* <img src={"./../../../../images/books/2.png"}  style={{width:'150px'}}/> */}
                             </div>
                             <div className="col-7">
                                 <h5>First slide label</h5>
@@ -37,7 +37,7 @@ function Carousel() {
                     <div className="carousel-item active" data-bs-interval="10000">
                         <div className = "row align-items-center">
                             <div className="col-5 text-center">
-                              <img src={"./../../../../images/books/3.png"}  style={{width:'150px'}}/>
+                              {/* <img src={"./../../../../images/books/3.png"}  style={{width:'150px'}}/> */}
                             </div>
                             <div className="col-7">
                                 <h5>First slide label</h5>

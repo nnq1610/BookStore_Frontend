@@ -1,28 +1,28 @@
 import React from "react";
 import Book from "../../../models/Book";
-interface BookProps {
-    book: Book;
+import SachModel from "../../../models/SachModel";
+interface SachPropsInterFace {
+    sach: SachModel;
 }
-
-const BookProps: React.FC<BookProps> = ({book}) => {
+const SachProps: React.FC<SachPropsInterFace> = (props) => {
 
     return  (
         <div className="col-md-3 mt-2">
             <div className="card">
-                <img src={require(book.imageUrl)}
+                {/* <img src={require(book.imageUrl)}
                 className = "card-img-top"
                 alt = {book.title}
                 style={{height: '200px'}}
-                />
+                /> */}
                 <div className="card-body">
-                    <h5 className="card-title">{book.title}</h5>
-                    <p className="card-text">{book.description}</p>
+                    <h5 className="card-title">{props.sach.tenSach}</h5>
+                    <p className="card-text">{props.sach.moTa}</p>
                     <div className="price">
                         <span className = "original-price">
-                            <del>{book.originalPrice}</del>
+                            <del>{props.sach.giaNiemYet}</del>
                         </span>
                         <span className="discouted-price">
-                            <strong>{book.price}</strong>
+                            <strong>{props.sach.giaBan}</strong>
                         </span>
                     </div>
                     <div className="row mt-2" role="group">
@@ -51,4 +51,4 @@ const BookProps: React.FC<BookProps> = ({book}) => {
     );
     
 }
-export default BookProps;
+export default SachProps;
