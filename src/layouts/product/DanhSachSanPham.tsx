@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import SachModel from "../../models/SachModel";
 import SachProps from "./components/SachProps";
 import { layToanBoSach } from "../../api/SachApi";
+import { layToanBoAnh } from "../../api/HinhAnhApi";
 
 const DanhSachSanPham: React.FC = () =>{
 
@@ -17,10 +18,16 @@ const DanhSachSanPham: React.FC = () =>{
         layToanBoSach().then(
             sachData =>{
                 setDanhSachQuyenSach(sachData);
-                setDangTaiDuLieu(false)
+                setDangTaiDuLieu(false);
             }
-        )
-    })
+        ).catch(
+            error => {
+                setDangTaiDuLieu(false);
+                setBaoLoi(error.message);
+            }
+            
+        );
+    }, [])
     if(dangTaiDuLieu) {
         return (
             <div>
@@ -44,7 +51,6 @@ const DanhSachSanPham: React.FC = () =>{
 
                 danhSachQuyenSach.map((sach) => (
                     <SachProps key = {sach.maSach} sach = {sach}/>
-
                 ))
             }
 
