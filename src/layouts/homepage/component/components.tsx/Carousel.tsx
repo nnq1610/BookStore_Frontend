@@ -1,6 +1,33 @@
-import React from "react";
+import SachModel from "../../../../models/SachModel";
+import { lay3SachMoiNhat, layToanBoSach } from "../../../../api/SachApi";
+import CarouselItem from "./CarouselItem";
+import { useEffect, useState } from "react";
 
-function Carousel() {
+const Carousel:React.FC =()=> {
+
+    //LAy ra duoc du lieu va bo xuong
+
+
+    const[danhSachQuyenSach, setDanhSachQuyenSach] = useState<SachModel[]>([]);
+    const[dangTaiDuLieu, setDangTaiDuLieu] = useState(true);
+    const[baoLoi, setBaoLoi] = useState(null);
+
+
+    useEffect (
+        () => {
+            lay3SachMoiNhat().then (
+                sachData => {
+                    setDanhSachQuyenSach(sachData);
+                    setDangTaiDuLieu(false);
+                }
+            ).catch(
+                error => {
+                    setDangTaiDuLieu(false);
+                    setBaoLoi(error.message);
+                }
+            );
+        }, []//=>chi goi 1 lan
+    )
     return (
         <div>
             <div id="carouselExampleDark" className="carousel carousel-dark slide">
@@ -12,53 +39,15 @@ function Carousel() {
                 <div className="carousel-inner">
                     {/* Tạo thẻ div để vứt vào 1 dòng */}
                     <div className="carousel-item active" data-bs-interval="10000">
-                        <div className = "row align-items-center">
-                            <div className="col-5 text-center">
-                              {/* <img src={"./../../../../images/books/1.png"}  style={{width:'150px'}}/> */}
-                            </div>
-                            <div className="col-7">
-                                <h5>Sách ôn thực chiến ielts</h5>
-                                <p>Some representative placeholder content for the first slide.</p>
-                            </div>
-                        </div>
+                        <CarouselItem key={0} sach= {danhSachQuyenSach[0]}/>
                     </div>
 
                     <div className="carousel-item active" data-bs-interval="10000">
-                        <div className = "row align-items-center">
-                            <div className="col-5 text-center">
-                              {/* <img src={"./../../../../images/books/2.png"}  style={{width:'150px'}}/> */}
-                            </div>
-                            <div className="col-7">
-                                <h5>First slide label</h5>
-                                <p>Some representative placeholder content for the first slide.</p>
-                            </div>
-                        </div>
+                       <CarouselItem key = {1} sach={danhSachQuyenSach[1]}/>
                     </div>
                     <div className="carousel-item active" data-bs-interval="10000">
-                        <div className = "row align-items-center">
-                            <div className="col-5 text-center">
-                              {/* <img src={"./../../../../images/books/3.png"}  style={{width:'150px'}}/> */}
-                            </div>
-                            <div className="col-7">
-                                <h5>First slide label</h5>
-                                <p>Some representative placeholder content for the first slide.</p>
-                            </div>
-                        </div>
+                       <CarouselItem key = {2} sach={danhSachQuyenSach[2]}/>
                     </div>
-                    {/* <div className="carousel-item" data-bs-interval="2000">
-                        <img src="..." className="d-block w-100" alt="..." />
-                        <div className="carousel-caption d-none d-md-block">
-                            <h5>Second slide label</h5>
-                            <p>Some representative placeholder content for the second slide.</p>
-                        </div>
-                    </div> */}
-                    {/* <div className="carousel-item">
-                        <img src="..." className="d-block w-100" alt="..." />
-                        <div className="carousel-caption d-none d-md-block">
-                            <h5>Third slide label</h5>
-                            <p>Some representative placeholder content for the third slide.</p>
-                        </div>
-                    </div> */}
                 </div>
                 <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
                     <span className="carousel-control-prev-icon" aria-hidden="true"></span>

@@ -5,7 +5,7 @@ import { layToanBoAnh } from "../../../api/HinhAnhApi";
 interface SachPropsInterFace {
     sach: SachModel;
 }
-
+//Cần truyền vào sách
 const SachProps: React.FC<SachPropsInterFace> = (props) => {
     const maSach: number  = props.sach.maSach;
 
@@ -46,11 +46,11 @@ const SachProps: React.FC<SachPropsInterFace> = (props) => {
     }
     console.log('data anh',danhSachAnh[0])
 
+    //Check du lieu anh
     let  duLieuAnh: string  = "";
     if (danhSachAnh[0] && danhSachAnh[0].duLieuAnh) {
         duLieuAnh =  danhSachAnh[0].duLieuAnh;
     }
-
 
 
 

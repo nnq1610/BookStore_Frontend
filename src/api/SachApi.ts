@@ -5,13 +5,10 @@ import { my_request } from "./Request";
 //Lay ra danh sach cac quyen sach 
 //Tra ve khai niem data
 
-
-
-export async function layToanBoSach():Promise<SachModel[]> {
+async function laySach(duongDan: string): Promise<SachModel[]> {
     const ketQua:SachModel[] = [];
     //Xác định endpoint la gì
-    const duongDan:string = "http://localhost:8080/sach";
-    // goi phuong thuc request
+   
 
     const response =await my_request(duongDan);
     //Lay ra json
@@ -32,8 +29,18 @@ export async function layToanBoSach():Promise<SachModel[]> {
             tenTacGia: responseData[key].tenTacGia,
             trungBinhXepHang: responseData[key].trungBinhXepHang
     }
-        )
+        );
 }
     return ketQua;
 
+}
+
+export async function layToanBoSach():Promise<SachModel[]> {
+    const duongDan:string = "http://localhost:8080/sach?sort,desc";
+    return laySach(duongDan);
+
+}
+export async function lay3SachMoiNhat(): Promise<SachModel[]> {
+    const duongDan: string = "http://localhost:8080/sach?sort,desc&page=0&size=3";
+    return laySach(duongDan);
 }

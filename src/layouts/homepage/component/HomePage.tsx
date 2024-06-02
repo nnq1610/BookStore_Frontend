@@ -12,5 +12,4 @@ function HomePage() {
         </div>
     )
 }
-export {};
 export default HomePage;
