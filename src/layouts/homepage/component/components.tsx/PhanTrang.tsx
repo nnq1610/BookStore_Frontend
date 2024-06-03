@@ -6,7 +6,7 @@ interface PhantrangInterface {
     phanTrang: any;
 }
 
-const PhanTrang : React.FC<PhantrangInterface> = (props) => {
+ export const PhanTrang : React.FC<PhantrangInterface> = (props) => {
  
     const danhSachPhanTrang = [];
 
@@ -23,10 +23,10 @@ const PhanTrang : React.FC<PhantrangInterface> = (props) => {
     } else if(props.trangHienTai > 1) {
 
         //Neu co tong trang lon hơn 
-        if(props.tongSoTrang >= 3) {
+        if(props.trangHienTai >= 3) {
             danhSachPhanTrang.push(props.trangHienTai -2);
         }
-        if(props.tongSoTrang >= 2) {
+        if(props.trangHienTai >= 2) {
             danhSachPhanTrang.push(props.trangHienTai -1);
         }
 
@@ -48,26 +48,20 @@ const PhanTrang : React.FC<PhantrangInterface> = (props) => {
                 <li className="page-item " onClick={() => props.phanTrang(1)}>
                 <button className="page-link"  >Trang đầu</button>
                 </li>
-
-                
                 {
+                    //so sánh trang hiện tai đang xem với trang được map vào
+                    //Điều nàu cho biết trang nào sẽ áp được áp  dụng css
+
                     danhSachPhanTrang.map( trang=> (
-                        <li className="page-item " onClick={() => props.phanTrang(trang)}>
-                            <button className="page-link" >{trang}</button>
+                        <li className="page-item " key = {trang} onClick={() => props.phanTrang(trang)}>
+                            <button className={"page-link" + (props.trangHienTai == trang ?"active":"")} >{trang}</button>
                         </li>
                     )
 
                     )
                 }
-
-
-                <li className="page-item"><button className="page-link">1</button></li>
-                <li className="page-item active">
-                <button className="page-link" >2 <span className="sr-only">(current)</span></button>
-                </li>
-                <li className="page-item"><button className="page-link">3</button></li>
-                <li className="page-item">
-                <a className="page-link" href="#">Trang cuối</a>
+                <li className="page-item" onClick={() => props.phanTrang(props.tongSoTrang)}>
+                    <button className="page-link" >Trang cuối</button>
                 </li>
             </ul>
         </nav>

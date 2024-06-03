@@ -34,11 +34,11 @@ import { my_request } from "./Request";
 
 //Chi lay ra toan bo anh cua 1 quyen sach(dua vao ma sach)
 export async function layToanBoAnh(maSach: number):Promise<HinhAnhModel[]> {
-    const duongDan: string = `http://localhost:8080/sach/${maSach}/danhSachHinhAnh`; 
-    
+    const duongDan: string = `http://localhost:8080/sach/${maSach}/danhSachHinhAnh`;     
     return layAnhCuaMotSach(duongDan);// Use backticks for template literals
 
 }
+
 export async function lay1AnhCuaSach(maSach:number):Promise<HinhAnhModel[]>{
     const duongDan: string = `http://localhost:8080/sach/${maSach}/danhSachHinhAnh?sort=maHinhAnh&page=0&size=1`;
 

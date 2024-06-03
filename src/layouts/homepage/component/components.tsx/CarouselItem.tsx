@@ -7,15 +7,18 @@ interface CarouselItemInterFace {
     sach: SachModel;
 }
 
+
 const CarouselItem: React.FC<CarouselItemInterFace> = (props) => {
     const [danhSachAnh, setDanhSachAnh] = useState<HinhAnhModel[]>([]);
     const [dangTaiDuLieu, setDangTaiDuLieu] = useState(true);
-    const [baoLoi, setBaoLoi] = useState<string | null>(null);
+    const [baoLoi, setBaoLoi] = useState(null);
 
     // Sử dụng một biến tạm để lưu giá trị maSach
-    const maSach: number | undefined = props.sach?.maSach;
+    const maSach: number = props.sach.maSach;
 
-    useEffect(() => {
+    useEffect(
+        
+        () => {
         if (maSach !== undefined) {
             lay1AnhCuaSach(maSach).then(
                 hinhAnhData => {

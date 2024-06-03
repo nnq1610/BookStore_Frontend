@@ -1,6 +1,23 @@
-import React from 'react';
+import React, { ChangeEvent, useState } from 'react';
+interface NavbarProps {
+  tuKhoaTimKiem: string;
+  setTuKhoaTimKiem: (tuKhoa:string) => void ;
+}
+//Can nhan vao tuKHoa de thay tim duoc 
+function Navbar({tuKhoaTimKiem, setTuKhoaTimKiem}:NavbarProps)  {
 
-function Navbar()  {
+//Thay doi noi dung cua html element
+
+const [tuKhoaTamThoi, setTuKhoaTamThoi] = useState('');
+
+const onSearchInputChange = (e: ChangeEvent<HTMLInputElement>)=> {
+  setTuKhoaTamThoi(e.target.value);
+}
+
+const handleSearch = () => {
+  setTuKhoaTimKiem(tuKhoaTamThoi);
+}
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
@@ -60,10 +77,10 @@ function Navbar()  {
 
         </div>
         {/* Tìm kiếm */}
-       <form className='d-flex'>
-          <input className='form-control me-2' type='search' placeholder="Tìm kiếm"></input>
-          <button className='btn btn-outline-success' type='submit'>Search</button>
-       </form>
+       <div className='d-flex'>
+          <input className='form-control me-2' type='search' placeholder="Tìm kiếm" onChange={onSearchInputChange} value={tuKhoaTamThoi}></input>
+          <button className='btn btn-outline-success' type='submit' onClick={handleSearch}>Search</button>
+       </div>
 
        {/* Biểu tượng giỏ hàng */}
        <ul className='navbar-nav me-1'>

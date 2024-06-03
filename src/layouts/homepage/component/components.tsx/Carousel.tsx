@@ -17,7 +17,7 @@ const Carousel:React.FC =()=> {
         () => {
             lay3SachMoiNhat().then (
                 sachData => {
-                    setDanhSachQuyenSach(sachData);
+                    setDanhSachQuyenSach(sachData.ketQua);
                     setDangTaiDuLieu(false);
                 }
             ).catch(
@@ -28,6 +28,25 @@ const Carousel:React.FC =()=> {
             );
         }, []//=>chi goi 1 lan
     )
+
+    if(dangTaiDuLieu) {
+
+        return (
+            <div>
+                <h1>
+                    Đang tải dữ liệu
+                </h1>
+            </div>
+        );
+    }
+
+    if(baoLoi) {
+        return (
+            <div>
+                <h1>Gặp lỗi: {baoLoi}</h1>
+            </div>
+        );
+    }
     return (
         <div>
             <div id="carouselExampleDark" className="carousel carousel-dark slide">
