@@ -6,9 +6,10 @@ import { PhanTrang } from "../homepage/component/components.tsx/PhanTrang";
 
 interface danhSachSanPhanProps {
     tuKhoaTimKiem: string;
+    maTheLoai : number;
 }
 
-function DanhSachSanPham({tuKhoaTimKiem}:danhSachSanPhanProps) {
+function DanhSachSanPham({tuKhoaTimKiem, maTheLoai}:danhSachSanPhanProps) {
 
 
     const [danhSachQuyenSach, setDanhSachQuyenSach] = useState<SachModel[]>([]);
@@ -24,7 +25,7 @@ function DanhSachSanPham({tuKhoaTimKiem}:danhSachSanPhanProps) {
 
     useEffect(()=>{
 
-        if(tuKhoaTimKiem == '') {
+        if(tuKhoaTimKiem == '' &&maTheLoai ==0) {
             layToanBoSach(trangHienTai-1).then(
                 sachData =>{
                     setDanhSachQuyenSach(sachData.ketQua);
@@ -41,7 +42,7 @@ function DanhSachSanPham({tuKhoaTimKiem}:danhSachSanPhanProps) {
 
         }
         else {
-            timKiemsach(tuKhoaTimKiem).then(
+            timKiemsach(tuKhoaTimKiem, maTheLoai).then(
                 kq =>{
                     setDanhSachQuyenSach(kq.ketQua);
                     setTongSoTrang(kq.tongSoTrang)
@@ -55,10 +56,9 @@ function DanhSachSanPham({tuKhoaTimKiem}:danhSachSanPhanProps) {
                 
             );
         }
-        }, [trangHienTai, tuKhoaTimKiem]
-       
-
-)
+        }, [trangHienTai, tuKhoaTimKiem, maTheLoai]
+    
+);
 
 
     const phanTrang =(trang: number) => {

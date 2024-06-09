@@ -7,16 +7,27 @@ import HomePage from './layouts/homepage/component/HomePage';
 import Carousel from './layouts/homepage/component/components.tsx/Carousel';
 import { layToanBoSach } from './api/SachApi';
 import DanhSachSanPham from './layouts/product/DanhSachSanPham';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import About from './layouts/about/About';
+import ChiTietSanPham from './layouts/product/components/ChiTietSanPham';
+
+
 function App() {
-
-
  const [tuKhoaTimKiem, setTuKhoaTimKiem] =  useState('');
   
   return (
     <div className="App">
-      <Navbar tuKhoaTimKiem={tuKhoaTimKiem} setTuKhoaTimKiem={setTuKhoaTimKiem} />
-      <HomePage tuKhoaTimKiem={tuKhoaTimKiem} />
-      <Footer/>
+      <BrowserRouter>
+        <Navbar tuKhoaTimKiem={tuKhoaTimKiem} setTuKhoaTimKiem={setTuKhoaTimKiem} />
+        <Routes>
+           <Route path='/' element={<HomePage tuKhoaTimKiem={tuKhoaTimKiem} />} />            
+           <Route path='/:maTheLoai' element={<HomePage tuKhoaTimKiem={tuKhoaTimKiem} />} />         
+           <Route path='/about' element={<About />} />
+           <Route path='/sach/:maSach' element={<ChiTietSanPham />} />
+        </Routes>
+        <Footer/>   
+      </BrowserRouter>
+      
     </div>
   );
 }

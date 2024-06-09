@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import SachModel from "../../../models/SachModel";
 import HinhAnhModel from "../../../models/HinhAnhModel";
 import { layToanBoAnh } from "../../../api/HinhAnhApi";
+import { Link } from "react-router-dom";
 interface SachPropsInterFace {
     sach: SachModel;
 }
@@ -57,16 +58,21 @@ const SachProps: React.FC<SachPropsInterFace> = (props) => {
     return  (
         <div className="col-md-3 mt-2">
             <div className="card">
-                <img src={`${duLieuAnh}`}
-                className = "card-img-top"
-                alt = {props.sach.tenSach}
-                style={{height: '200px'}}
-                />
+                <Link to = {`/sach/${props.sach.maSach}`}>
+                    <img src={duLieuAnh}
+                        className = "card-img-top"
+                        alt = {props.sach.tenSach}
+                        style={{height: '200px'}}
+                        />
                 
-                
+                </Link>
+                    
                 <div className="card-body">
-                    <h5 className="card-title">{props.sach.tenSach}</h5>
-                    <p className="card-text">{props.sach.moTa}</p>
+                        <h5 className="card-title">{props.sach.tenSach}</h5>
+                    
+                        <p className="card-text">{props.sach.moTa}</p>
+                    
+                    
                     <div className="price">
                         <span className = "original-price">
                             <del>{props.sach.giaNiemYet}</del>
