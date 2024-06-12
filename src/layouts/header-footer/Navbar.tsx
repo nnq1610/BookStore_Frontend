@@ -1,4 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
+import { Search } from 'react-bootstrap-icons';
 import { NavLink } from 'react-router-dom';
 interface NavbarProps {
   tuKhoaTimKiem: string;
@@ -80,7 +81,9 @@ const handleSearch = () => {
         {/* Tìm kiếm */}
        <div className='d-flex'>
           <input className='form-control me-2' type='search' placeholder="Tìm kiếm" onChange={onSearchInputChange} value={tuKhoaTamThoi}></input>
-          <button className='btn btn-outline-success' type='submit' onClick={handleSearch}>Search</button>
+          <button className='btn btn-outline-success' type='submit' onClick={handleSearch}>
+            <Search/>
+            </button>
        </div>
 
        {/* Biểu tượng giỏ hàng */}
