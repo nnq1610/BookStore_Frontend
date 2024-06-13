@@ -8,7 +8,7 @@ function DangKyNguoiDung() {
     const[soDienThoai, setSoDienThoai] = useState("");
     const[matKhau, setmatKhau] = useState("");
     const[nhapLaiMatKhau, setNhapLaiMatkhau] = useState("");
-    const[gioiTinh, setGioiTinh] = useState(1);
+    const[gioiTinh, setGioiTinh] = useState("M");
 
 //Hien bao Loi
 
@@ -16,11 +16,21 @@ function DangKyNguoiDung() {
     const[errorEmail, setErrorEmail] = useState("");
     const[errorMatKhau, setErrorMatKhau] = useState("");
     const[errorMatKhauLapLai, setErrorMatKhauLapLai] = useState("");
+    const[errorThongBao, setErrorThongbao]= useState("");
 //Xử lí thông tin khi submit
    const handleSubmit = async (e: React.FormEvent) => {
+    setErrorTenDangNhap("");
+    setErrorEmail("");
+    setErrorMatKhau("");
+    setErrorMatKhauLapLai("");
 
+    //Tranhs click lieen tucj
+    e.preventDefault();
    }
     
+
+
+
    const kiemTraTenDangNhapTonTai = async(tenDangNhap: string) => {
     const url = `http://localhost:8080/nguoi_dung/search/existsByTenDangNhap?tenDangNhap=${tenDangNhap}`;
     //call
@@ -32,16 +42,26 @@ function DangKyNguoiDung() {
             setErrorTenDangNhap("Tên đăng nhập đã tồn tại!");
             return true;
         }
-
         return false;
-
-
     } catch(error) {
         console.log("Lỗi khi kiểm tra tên đăng nhập", error);
         //Khong call dc endpoint
         return false;
     }
    }
+   const handleTenDangNhapChange =  (e: React.ChangeEvent<HTMLInputElement>) => {
+    //thay doi gia tri ten dang nhap
+    setTenDangNhap(e.target.value);
+    setErrorTenDangNhap("");
+
+    return kiemTraTenDangNhapTonTai(e.target.value);
+
+   }
+
+
+
+
+
 
    ////////////////////////////////////////////////////////
    const kiemTraEmail = async(email: string) => {
@@ -65,7 +85,18 @@ function DangKyNguoiDung() {
         return false;
     }
    }
-   ////////////////////////////////////////////////\
+   const handleEmailChange =  (e: React.ChangeEvent<HTMLInputElement>) => {
+    //thay doi gia tri ten dang nhap
+    setEmail(e.target.value);
+    setErrorEmail("");
+
+    return kiemTraEmail(e.target.value);
+
+   }
+   ////////////////////////////////////////////////
+
+
+
    const kiemTraMatKhau = (matKhau: string) => {
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     if(!passwordRegex.test(matKhau)) {
@@ -76,16 +107,23 @@ function DangKyNguoiDung() {
         return false;
     }
 }
+    const handleMatKhau = (e:React.ChangeEvent<HTMLInputElement>) => {
+        setmatKhau(e.target.value);
+        setErrorMatKhau("");
 
-const kiemTramatKhauLapLai = (matKhau: string) => {
-    if(nhapLaiMatKhau !== matKhau) {
-        setErrorMatKhauLapLai("Mật khẩu không khớp!");
-        return true;
-    } else {
-        setErrorMatKhauLapLai("");
-        return false;
+        return kiemTraMatKhau(e.target.value);
     }
-}
+
+
+    const kiemTramatKhauLapLai = (matKhauLapLai: string) => {
+        if(matKhau !== matKhauLapLai) {
+            setErrorMatKhauLapLai("Mật khẩu không khớp!");
+            return true;
+        } else {
+            setErrorMatKhauLapLai("");
+            return false;
+        }
+    }
 
     const handleMatKhaulapLaiChange = (e:React.ChangeEvent<HTMLInputElement>) => {
         setNhapLaiMatkhau(e.target.value);
@@ -94,35 +132,12 @@ const kiemTramatKhauLapLai = (matKhau: string) => {
         return kiemTramatKhauLapLai(e.target.value);
     }
 
-    const handleMatKhau = (e:React.ChangeEvent<HTMLInputElement>) => {
-        setmatKhau(e.target.value);
-        setErrorMatKhau("");
-
-        return kiemTraMatKhau(e.target.value);
-    }
    
    
-   const handleEmailChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    //thay doi gia tri ten dang nhap
-    setEmail(e.target.value);
-    setErrorEmail("");
-
-    return kiemTraEmail(e.target.value);
-
-   }
+   
+   
    ////////////////////////////////
-   const handleTenDangNhapChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    //thay doi gia tri ten dang nhap
-    setTenDangNhap(e.target.value);
-    setErrorTenDangNhap("");
-
-    return kiemTraTenDangNhapTonTai(e.target.value);
-
-   }
-
-
-
-
+   
     return (
         <div className="container">
             <h1 className="mt-5 text-center">

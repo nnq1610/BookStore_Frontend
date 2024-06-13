@@ -43,9 +43,9 @@ interface PhantrangInterface {
     }
 
     return (
-        <nav aria-label="...">
-            <ul className="pagination">
-                <li className="page-item " onClick={() => props.phanTrang(1)}>
+        <nav aria-label="Page navigation example">
+            <ul className="pagination justify-content-center">
+                <li className="page-item  " onClick={() => props.phanTrang(1)}>
                 <button className="page-link"  >Trang đầu</button>
                 </li>
                 {
